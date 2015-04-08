@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class EmptyRoomEntry implements Serializable {
    /* Result Example
        {
-           "datum": "2015-04-07",
+               "datum": "2015-04-07",
                "lesuur": 0,
                "ruimte": "OB207",
                "grootte": 16,
