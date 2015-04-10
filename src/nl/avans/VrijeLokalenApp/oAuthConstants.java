@@ -1,4 +1,4 @@
-package nl.avans.oAuthdemo;
+package nl.avans.VrijeLokalenApp;
 
 public class oAuthConstants {
 
