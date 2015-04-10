@@ -10,12 +10,12 @@ public class oAuthConstants {
 	public static final String ACCESS_URL 		= "https://publicapi.avans.nl/oauth/access_token";
 	public static final String AUTHORIZE_URL 	= "https://publicapi.avans.nl/oauth/login.php";
 
-	public static final String API_REQUEST_PEOPLE 		= "https://publicapi.avans.nl/oauth/people/";
-	public static final String API_REQUEST_ROOSTER 		= "https://publicapi.avans.nl/oauth/rooster/groep/42IN11SOb/";
-	public static final String API_REQUEST_INUSE 		= "https://publicapi.avans.nl/oauth/inuse/";
-	public static final String API_REQUEST_LOKAAL 		= "https://publicapi.avans.nl/oauth/lokaalbeschikbaarheid/?start=2015-03-08&end=2015-03-09&filter=OB2&type=all";
-	public static final String API_REQUEST_GROUPS 		= "https://publicapi.avans.nl/oauth/groups/";
-	public static final String API_REQUEST_BB 		= "https://publicapi.avans.nl/oauth/bb/ann/?format=json";
+//	public static final String API_REQUEST_PEOPLE 		= "https://publicapi.avans.nl/oauth/people/";
+//	public static final String API_REQUEST_ROOSTER 		= "https://publicapi.avans.nl/oauth/rooster/groep/42IN11SOb/";
+//	public static final String API_REQUEST_INUSE 		= "https://publicapi.avans.nl/oauth/inuse/";
+//	public static final String API_REQUEST_LOKAAL 		= "https://publicapi.avans.nl/oauth/lokaalbeschikbaarheid/?start=2015-03-08&end=2015-03-09&filter=OB2&type=all";
+//	public static final String API_REQUEST_GROUPS 		= "https://publicapi.avans.nl/oauth/groups/";
+//	public static final String API_REQUEST_BB 		= "https://publicapi.avans.nl/oauth/bb/ann/?format=json";
 
 
 	public static final String ENCODING 		= "UTF-8";

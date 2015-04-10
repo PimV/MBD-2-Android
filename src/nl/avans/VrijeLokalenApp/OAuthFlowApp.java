@@ -48,6 +48,7 @@ public class OAuthFlowApp extends Activity implements SpinnerFragment.onSpinnerC
                         }
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setCancelable(false)
                     .show();
         }
 

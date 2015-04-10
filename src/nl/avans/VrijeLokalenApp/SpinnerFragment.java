@@ -44,7 +44,6 @@ public class SpinnerFragment extends Fragment {
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
-                return;
             }
         };
 
