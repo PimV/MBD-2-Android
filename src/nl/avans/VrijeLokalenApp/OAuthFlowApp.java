@@ -33,12 +33,6 @@ public class OAuthFlowApp extends Activity implements SpinnerFragment.onSpinnerC
         super.onCreate(savedInstanceState);
         //Get preferences
         this.prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        this.prefs.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
-            @Override
-            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-
-            }
-        });
         if (this.prefs.getString(OAuth.OAUTH_TOKEN, "").isEmpty() || this.prefs.getString(OAuth.OAUTH_TOKEN_SECRET, "").isEmpty()) {
             new AlertDialog.Builder(this)
                     .setTitle("Inloggen vereist")
@@ -58,12 +52,17 @@ public class OAuthFlowApp extends Activity implements SpinnerFragment.onSpinnerC
         }
 
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("dateStart", "2015-03-05");
-        editor.putString("dateEnd", "2015-03-12");
-//        editor.putString("dateStart", "");
-//        editor.putString("dateEnd", "");
-        editor.putString("rooms", "OB2");
+        if (!prefs.contains("dateStart")) {
+            editor.putString("dateStart", "2015-03-05");
+        }
+        if (!prefs.contains("dateEnd")) {
+            editor.putString("dateEnd", "2015-03-12");
+        }
+        if (!prefs.contains("rooms")) {
+            editor.putString("rooms", "OB2");
+        }
         editor.commit();
+
         ResultLoader.getInstance().setContext(getApplicationContext());
         setContentView(R.layout.main);
 

@@ -74,23 +74,19 @@ public class SpinnerFragment extends Fragment {
             HashMap<String, HashMap<String, ArrayList<EmptyRoomEntry>>> data = ResultLoader
                     .getInstance()
                     .getAndParse();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
             /* String to Date */
             ArrayList<Date> dates = new ArrayList<>();
             for (Object s : data.keySet().toArray()) {
-                dates.add(format.parse(s.toString()));
+                dates.add(uniformFormat.parse(s.toString()));
             }
             /* Sort ArrayList with Date Objects */
             Collections.sort(dates);
 
 
             /* Date to String */
-            SimpleDateFormat nlFormat = new SimpleDateFormat("dd-MM-yyyy");
-
             ArrayList<String> dateStrings = new ArrayList<>();
             for (Date d : dates) {
-                dateStrings.add(nlFormat.format(d));
+                dateStrings.add(niceFormat.format(d));
             }
             ArrayAdapter dateAdap = new ArrayAdapter(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, dateStrings);
             dateAdap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -132,19 +128,25 @@ public class SpinnerFragment extends Fragment {
 
     public String getSelectedDate() {
 
-        try {
-            Date d = niceFormat.parse(dateSpinner.getSelectedItem().toString());
-            System.out.println(uniformFormat.format(d));
-            return uniformFormat.format(d);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        if (dateSpinner.getSelectedItem() != null) {
 
-        dateSpinner.getSelectedItem().toString();
-        return dateSpinner.getSelectedItem().toString();
+            try {
+                Date d = niceFormat.parse(dateSpinner.getSelectedItem().toString());
+                System.out.println(uniformFormat.format(d));
+                return uniformFormat.format(d);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return "";
+
+
     }
 
     public String getSelectedRoom() {
+        if (roomSpinner.getSelectedItem() == null) {
+            return "";
+        }
         return roomSpinner.getSelectedItem().toString();
     }
 
@@ -165,6 +167,6 @@ public class SpinnerFragment extends Fragment {
     }
 
     public void updateResults() {
-        listener.onSpinnerChanged(getSelectedDate(), roomSpinner.getSelectedItem().toString());
+        listener.onSpinnerChanged(getSelectedDate(), getSelectedRoom());
     }
 } 
