@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical" >
+
+    <TextView
+            android:id="@+id/settingsTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Search Settings:" />
+
+    <TextView
+            android:id="@+id/startdateTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="Start date:" />
+
+    <DatePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/startdatePicker" android:layout_weight="1"/>
+
+    <TextView
+            android:id="@+id/enddateTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="End date:" />
+
+    <DatePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/enddatePicker" android:layout_weight="1"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal" >
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_weight="50"
+            android:text="Save"
+            android:id="@+id/saveButton" android:layout_height="wrap_content"/>
+
+        <Button
+                android:layout_width="fill_parent"
+                android:layout_weight="50"
+                android:text="Cancel"
+                android:id="@+id/cancelButton" android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

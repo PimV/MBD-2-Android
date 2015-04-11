@@ -8,6 +8,9 @@
     <item android:id="@+id/refresh"
         android:title="Refresh"
         android:icon="@android:drawable/ic_menu_send" />
+    <item android:id="@+id/settings"
+        android:title="Settings"
+        android:icon="@android:drawable/ic_menu_manage" />
     <item android:id="@+id/exit"
         android:title="Exit"
         android:icon="@android:drawable/ic_menu_close_clear_cancel" />

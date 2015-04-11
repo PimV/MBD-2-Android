@@ -94,6 +94,9 @@ public class OAuthFlowApp extends Activity implements SpinnerFragment.onSpinnerC
             case R.id.login:
                startLogin();
                 break;
+            case R.id.settings:
+                startSettings();
+                break;
             case R.id.exit:
                 finish();
                 break;
@@ -104,6 +107,11 @@ public class OAuthFlowApp extends Activity implements SpinnerFragment.onSpinnerC
     private void startLogin() {
         Intent intent = new Intent();
         intent.setClass(this.getApplicationContext(), PrepareRequestTokenActivity.class);
+        startActivity(intent);
+    }
+
+    private void startSettings() {
+        Intent intent = new Intent(getApplicationContext(), Settings.class);
         startActivity(intent);
     }
 
