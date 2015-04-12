@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import nl.avans.oAuthdemo.R;
 
@@ -20,6 +23,8 @@ public class Settings extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
+
+        this.prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         Calendar c = Calendar.getInstance();
 
@@ -40,12 +45,55 @@ public class Settings extends Activity {
 
         startdatePicker.init(startYear, startMonth, startDay, dateChangedListener);
         enddatePicker.init(endYear, endMonth, endDay, dateChangedListener);
+
+        Button saveButton = (Button) findViewById(R.id.saveButton);
+        Button cancelButton = (Button) findViewById(R.id.cancelButton);
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePicker startdatePicker = (DatePicker)findViewById(R.id.startdatePicker);
+                DatePicker enddatePicker = (DatePicker)findViewById(R.id.enddatePicker);
+
+                int startYear = startdatePicker.getYear();
+                int startMonth = startdatePicker.getMonth() +1;
+                int startDay =  startdatePicker.getDayOfMonth();
+
+                int endYear = enddatePicker.getYear();
+                int endMonth = enddatePicker.getMonth() +1;
+                int endDay =  enddatePicker.getDayOfMonth();
+
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("dateStart", startYear + "-" + startMonth + "-" + startDay);
+                editor.putString("dateEnd", endYear + "-" + endMonth + "-" + endDay);
+                editor.commit();
+                System.out.println("Save Clicked");
+                finish();
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Cancel Clicked");
+                finish();
+            }
+        });
     }
 
     private DatePicker.OnDateChangedListener dateChangedListener = new DatePicker.OnDateChangedListener() {
         @Override
         public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            System.out.println("Test " + year + "-" + monthOfYear + "-" + dayOfMonth);
+            try {
+                if(view.equals(findViewById(R.id.startdatePicker))) {
+                    System.out.println("dateStart " + year + "-" + monthOfYear + "-" + dayOfMonth);
+                }
+                if(view.equals(findViewById(R.id.enddatePicker))) {
+                    System.out.println("dateEnd " + year + "-" + monthOfYear + "-" + dayOfMonth);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     };
 }

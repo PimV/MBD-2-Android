@@ -54,6 +54,12 @@ public class SpinnerFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        fillSpinners();
+    }
+
     public void checkSpinners() {
         if (dateSpinner.getAdapter().getCount() == 0) {
             dateSpinner.setEnabled(false);
