@@ -1,11 +1,5 @@
 package nl.avans.VrijeLokalenApp;
 
-import java.net.URLEncoder;
-
-import oauth.signpost.OAuthConsumer;
-import oauth.signpost.OAuthProvider;
-import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
-import oauth.signpost.commonshttp.CommonsHttpOAuthProvider;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +7,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import oauth.signpost.OAuthConsumer;
+import oauth.signpost.OAuthProvider;
+import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
+import oauth.signpost.commonshttp.CommonsHttpOAuthProvider;
+
+import java.net.URLEncoder;
 
 /**
  * Prepares a OAuthConsumer and OAuthProvider 
@@ -29,7 +29,7 @@ public class PrepareRequestTokenActivity extends Activity {
 
 	final String TAG = getClass().getName();
 	
-    private OAuthConsumer consumer; 
+    private OAuthConsumer consumer;
     private OAuthProvider provider;
     
 	@Override

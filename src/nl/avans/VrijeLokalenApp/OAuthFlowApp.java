@@ -1,12 +1,8 @@
 package nl.avans.VrijeLokalenApp;
 
-import android.app.AlertDialog;
-import android.app.FragmentManager;
-import android.content.DialogInterface;
-import nl.avans.oAuthdemo.R;
-import oauth.signpost.OAuth;
-
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -15,6 +11,8 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import nl.avans.oAuthdemo.R;
+import oauth.signpost.OAuth;
 
 
 /**
@@ -52,7 +50,7 @@ public class OAuthFlowApp extends Activity implements SpinnerFragment.onSpinnerC
                     .show();
         }
 
-        SharedPreferences.Editor editor = prefs.edit();
+        Editor editor = prefs.edit();
         if (!prefs.contains("dateStart")) {
             editor.putString("dateStart", "2015-03-05");
         }
@@ -83,6 +81,7 @@ public class OAuthFlowApp extends Activity implements SpinnerFragment.onSpinnerC
         switch (item.getItemId()) {
             case R.id.clear:
                 clearCredentials();
+                finish();
                 break;
             case R.id.refresh:
                 try {
@@ -129,7 +128,7 @@ public class OAuthFlowApp extends Activity implements SpinnerFragment.onSpinnerC
     public void onSpinnerChanged(String date, String classRoom) {
         if (resultFragment != null && resultFragment.isInLayout()) {
             try {
-                SharedPreferences.Editor editor = prefs.edit();
+                Editor editor = prefs.edit();
                 editor.putString("currentDate", date);
                 editor.putString("currentRoom", classRoom);
                 editor.commit();

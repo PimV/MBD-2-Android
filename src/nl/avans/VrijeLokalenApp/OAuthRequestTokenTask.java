@@ -1,13 +1,13 @@
 package nl.avans.VrijeLokalenApp;
 
 
-import oauth.signpost.OAuthConsumer;
-import oauth.signpost.OAuthProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
+import oauth.signpost.OAuthConsumer;
+import oauth.signpost.OAuthProvider;
 
 /**
  * An asynchronous task that communicates with Google to 

@@ -1,13 +1,13 @@
 package nl.avans.VrijeLokalenApp;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import nl.avans.oAuthdemo.R;
 
 import java.util.Calendar;
@@ -54,6 +54,7 @@ public class Settings extends Activity {
             public void onClick(View v) {
                 DatePicker startdatePicker = (DatePicker)findViewById(R.id.startdatePicker);
                 DatePicker enddatePicker = (DatePicker)findViewById(R.id.enddatePicker);
+                EditText roomField = (EditText)findViewById(R.id.roomCodeField);
 
                 int startYear = startdatePicker.getYear();
                 int startMonth = startdatePicker.getMonth() +1;
@@ -66,6 +67,7 @@ public class Settings extends Activity {
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString("dateStart", startYear + "-" + startMonth + "-" + startDay);
                 editor.putString("dateEnd", endYear + "-" + endMonth + "-" + endDay);
+                editor.putString("rooms", roomField.getText().toString().trim());
                 editor.commit();
                 System.out.println("Save Clicked");
                 finish();

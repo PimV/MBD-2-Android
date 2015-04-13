@@ -34,6 +34,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/enddatePicker" android:layout_weight="1"/>
+    <TextView
+            android:id="@+id/roomTextView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="Room code(s):" />
+
+    <EditText
+            android:id="@+id/roomCodeField"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Room Code"
+            android:inputType="text" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:layout_width="match_parent"

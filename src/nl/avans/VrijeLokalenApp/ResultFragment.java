@@ -2,7 +2,6 @@ package nl.avans.VrijeLokalenApp;
 
 import android.app.Fragment;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -36,6 +35,14 @@ public class ResultFragment extends Fragment {
                 .getAndParse();
         if (!data.containsKey(date)) {
             System.out.println("No entry found with this date");
+            for (int i = 0; i < 17; i++) {
+                String statusId = "ch_status_" + i;
+                int resId = getResources().getIdentifier(statusId, "id", OAuthFlowApp.PACKAGE_NAME);
+                TextView tv = (TextView) getView().findViewById(resId);
+                    tv.setBackgroundColor(getResources().getColor(R.color.grey));
+                    tv.setText("ONBEKEND");
+
+            }
             return;
         }
         for (EmptyRoomEntry myEntry : data.get(date).get(classRoom)) {

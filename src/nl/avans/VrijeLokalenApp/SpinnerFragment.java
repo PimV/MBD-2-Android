@@ -8,7 +8,9 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import nl.avans.oAuthdemo.R;
 
 import java.text.ParseException;
@@ -50,13 +52,13 @@ public class SpinnerFragment extends Fragment {
         roomSpinner.setOnItemSelectedListener(listenNow);
         dateSpinner.setOnItemSelectedListener(listenNow);
 
-        //checkSpinners();
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
         fillSpinners();
     }
 
@@ -74,12 +76,27 @@ public class SpinnerFragment extends Fragment {
         }
     }
 
+    public void resetSpinners() {
+        ArrayList<String> nullList = new ArrayList<>();
+        nullList.add("");
+        ArrayAdapter<String> nullAdapter = new ArrayAdapter(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, nullList);
+        dateSpinner.setAdapter(nullAdapter);
+        roomSpinner.setAdapter(nullAdapter);
+    }
+
     public void fillSpinners() {
+        resetSpinners();
         try {
             HashMap<String, HashMap<String, ArrayList<EmptyRoomEntry>>> data = ResultLoader
                     .getInstance()
                     .getAndParse();
+            if (data.keySet().size() == 0) {
+                System.out.println("NO data found");
+                return;
+            }
+
             /* String to Date */
+
             ArrayList<Date> dates = new ArrayList<>();
             for (Object s : data.keySet().toArray()) {
                 dates.add(uniformFormat.parse(s.toString()));
@@ -98,6 +115,10 @@ public class SpinnerFragment extends Fragment {
             dateSpinner.setAdapter(dateAdap);
 
             ArrayList<String> classRooms = new ArrayList<>();
+            if (getSelectedDate() == "") {
+                return;
+            }
+
             for (Object s : data.get(getSelectedDate()).keySet().toArray()) {
                 classRooms.add(s.toString());
             }
@@ -124,7 +145,9 @@ public class SpinnerFragment extends Fragment {
             ArrayAdapter roomAdap = new ArrayAdapter(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, classRooms);
             roomAdap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             roomSpinner.setAdapter(roomAdap);
-            roomSpinner.setSelection(0);
+
+            //roomSpinner.setSelection(0);
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,7 +156,7 @@ public class SpinnerFragment extends Fragment {
 
     public String getSelectedDate() {
 
-        if (dateSpinner.getSelectedItem() != null) {
+        if (dateSpinner.getSelectedItem() != null && dateSpinner.getSelectedItem().toString() != "") {
 
             try {
                 Date d = niceFormat.parse(dateSpinner.getSelectedItem().toString());

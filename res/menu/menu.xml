@@ -3,7 +3,7 @@
         android:title="Log in"
         android:icon="@android:drawable/ic_menu_add" />
     <item android:id="@+id/clear"
-        android:title="Verwijder Gegevens"
+        android:title="Verwijder inloggegevens en sluit af"
         android:icon="@android:drawable/ic_menu_delete" />
     <item android:id="@+id/refresh"
         android:title="Refresh"
